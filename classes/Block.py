@@ -26,6 +26,7 @@ class Block:
             get_fields_str(self.prev_block_hash, self.index, self.messages, self.time_added, self.nonce)
         return block_str.encode()
 
+    # Returns a hashed str of all data members
     def compute_block_hash(self) -> str:
         """
         computes the hash of the block using SHA-256 algorithm
