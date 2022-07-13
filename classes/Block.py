@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 import dataclasses as dc
 from datetime import datetime
-import exceptions
+import TransactionException
 import rsa
 from utilities import get_fields_str
 import hashlib
