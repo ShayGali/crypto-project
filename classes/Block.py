@@ -16,7 +16,7 @@ class Block:
     messages: List[Message]
     current_block_hash: str = dc.field(init=False)
     time_added: datetime = dc.field(init=False)
-    nonce: int = dc.field(init=False)
+    nonce: int = dc.field(init=False)   # A counter used for the proof-of-work algorithm
 
     TOKEN_PRIZE = 3
 
@@ -35,5 +35,6 @@ class Block:
         return block_hash
 
         # TODO: the Method - SHAY
+
     def verify_block(self, callback: Callable) -> None:
         pass
