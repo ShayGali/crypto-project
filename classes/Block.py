@@ -33,3 +33,6 @@ class Block:
         block_hash = hashlib.sha256(self.compute_block_header()).hexdigest()
         self.current_block_hash = block_hash
         return block_hash
+
+        # TODO: the Method
+    def verify_block(self,callback: Callable) -> None:
