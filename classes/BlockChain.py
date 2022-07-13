@@ -10,6 +10,7 @@ import hashlib
 import Message
 from typing import Callable, List
 
+
 @dataclass
 class BlockChain:
     block_head: Block
@@ -19,5 +20,6 @@ class BlockChain:
     def add_trans_to_block(self) -> None:
         pass
 
-    def add_trans_to_queue(self) -> Transaction:
+    # TODO: Create the method
+    def add_trans_to_queue(self, trans: Transaction) -> None:
         pass
