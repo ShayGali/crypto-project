@@ -20,6 +20,7 @@ class Block:
 
     TOKEN_PRIZE = 3
 
+    # Returns str of all data members -> called by compute_block_hash()
     def compute_block_header(self) -> bytes:
         block_str = \
             get_fields_str(self.prev_block_hash, self.index, self.messages, self.time_added, self.nonce)
