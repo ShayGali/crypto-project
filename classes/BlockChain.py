@@ -4,6 +4,7 @@ from datetime import datetime
 import exceptions
 import rsa
 from classes.Block import Block
+from classes.Transaction import Transaction
 from utilities import get_fields_str
 import hashlib
 import Message
