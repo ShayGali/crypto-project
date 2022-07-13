@@ -36,3 +36,4 @@ class Block:
 
         # TODO: the Method
     def verify_block(self,callback: Callable) -> None:
+        pass
