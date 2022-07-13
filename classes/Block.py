@@ -34,6 +34,6 @@ class Block:
         self.current_block_hash = block_hash
         return block_hash
 
-        # TODO: the Method
-    def verify_block(self,callback: Callable) -> None:
+        # TODO: the Method - SHAY
+    def verify_block(self, callback: Callable) -> None:
         pass

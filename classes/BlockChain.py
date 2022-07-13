@@ -16,10 +16,10 @@ class BlockChain:
     block_head: Block
     block_hash: str
 
-    # TODO: Create the method, return something to Miner
+    # TODO: Create the method, return something to Miner - SHIR
     def add_trans_to_block(self) -> None:
         pass
 
-    # TODO: Create the method
+    # TODO: Create the method - AVIAL
     def add_trans_to_queue(self, trans: Transaction) -> None:
         pass
