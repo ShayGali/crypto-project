@@ -3,7 +3,7 @@ import dataclasses as dc
 from datetime import datetime
 import exceptions
 import rsa
-from utilieties import get_fields_str
+from utilities import get_fields_str
 from rsa import VerificationError
 
 @dataclass
