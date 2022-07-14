@@ -26,7 +26,7 @@ class Message:
     def sign_message(self,sender_priv_key:rsa.PrivateKey,hash_algo:str)->None:
         known_hashes = ['MD5', 'SHA-1','SHA-224', 'SHA-256', 'SHA-384','SHA-512']
         if hash_algo not in known_hashes:
-            raise exceptions.TransactionException("Hash method is not valid")
+            raise TransactionException.TransactionException("Hash method is not valid")
         self.message_signature = rsa.sign(self.message_as_bytes(),sender_priv_key,hash_algo)
         # verify that the original message corresponds to the signed message
         self.verify()
@@ -42,7 +42,7 @@ class Message:
             hash_method_name = rsa.verify(self.message_as_bytes(),self.message_signature,self.sender_addr)
             return hash_method_name
         except VerificationError as ve:
-            raise exceptions.TransactionException("Verification failed: " + str(ve))
+            raise TransactionException.TransactionException("Verification failed: " + str(ve))
 
 
 # if __name__ == '__main__':
