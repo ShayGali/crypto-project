@@ -47,7 +47,7 @@ class Transaction:
         :return:
         """
         if self.payload_hash != self.compute_payload_hash() or self.trans_hash != self.seal():
-            raise exceptions.TransactionException("Tempered transaction = " + str(self))
+            raise TransactionException.TransactionException("Tempered transaction = " + str(self))
 
     def link_transactions(self, prev_trans):
         if isinstance(prev_trans, Transaction):
