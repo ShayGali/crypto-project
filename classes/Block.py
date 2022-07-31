@@ -36,7 +36,28 @@ class Block:
         self.current_block_hash = block_hash
         return block_hash
 
-        # TODO: the Method - SHAY
+    def seal_block(self):
+        self.time_added = datetime.now()
+        self.current_block_hash = self.compute_block_hash()
 
-    def verify_block(self, callback: Callable) -> None:
-        pass
+
+    # TODO: the Method - SHAY
+    # natan's code - maybe can help with the solution of this method
+    def validate_block(self):
+        """
+        1. validate integrity of each transaction
+        2. validate integrity of chain of transactions
+        :return:
+        """
+        for index, transaction in enumerate(self.transactions):
+            try:
+                transaction.validate_integrity()
+                # now, check the integrity of the chain of messages
+                # self.prev_trans_hash = prev_trans.trans_hash
+                if index > 0 and transaction.prev_trans_hash != self.transactions[index - 1].trans_hash:
+                    raise TransactionException.BlockException("Block creation failed due linking problem in transaction number: "
+                                         + index)
+            except TransactionException as tte:
+                raise TransactionException.BlockException("Block creation failed due to validation problem in transaction number: "
+                                     + index + str(tte))
+

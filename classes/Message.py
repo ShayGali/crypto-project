@@ -9,12 +9,12 @@ from rsa import VerificationError
 @dataclass
 class Message:
     # data
-    timestamp: datetime=dc.field(init=False)
+    timestamp: datetime = dc.field(init=False)
     amount:float
     sender_addr:rsa.PublicKey
     receiver_addr:rsa.PublicKey
     # encryption segment
-    message_signature:bytes=dc.field(default=b'')
+    message_signature:bytes = dc.field(default=b'')
 
     def __post_init__(self):
         self.timestamp = datetime.now()
@@ -23,7 +23,7 @@ class Message:
         message_str = get_fields_str(self.timestamp, self.amount, self.sender_addr, self.receiver_addr)
         return message_str.encode()
 
-    def sign_message(self,sender_priv_key:rsa.PrivateKey,hash_algo:str)->None:
+    def sign_message(self,sender_priv_key:rsa.PrivateKey,hash_algo:str) -> None:
         known_hashes = ['MD5', 'SHA-1','SHA-224', 'SHA-256', 'SHA-384','SHA-512']
         if hash_algo not in known_hashes:
             raise TransactionException.TransactionException("Hash method is not valid")
@@ -31,7 +31,7 @@ class Message:
         # verify that the original message corresponds to the signed message
         self.verify()
 
-    def verify_message(self)->None:
+    def verify_message(self) -> None:
         """
         This method validates the integrity of the signed message using the following:
         the data used for signing, the signature itself and the public key
