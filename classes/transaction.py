@@ -51,6 +51,10 @@ class Transaction:
         if self.payload_hash != self.compute_payload_hash() or self.trans_hash != self.__compute_trans_hash():
             raise exceptions.TransactionException("Tempered transaction number = " + str(self))
 
+    # TODO: validate that there is no double spending
+    def double_spending(self):
+        pass
+
     def link_transactions(self,prev_trans):
         if isinstance(prev_trans,Transaction):
             self.prev_trans_hash = prev_trans.trans_hash
