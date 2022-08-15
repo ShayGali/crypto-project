@@ -14,6 +14,8 @@ class Block:
     timestamp: datetime = dc.field(init=False)  # time the block got mined
     previous_hash: str  # hash from the previous block
     nonce: int = dc.field(init=False)  # A counter used for the proof-of-work algorithm (number used to generate hash)
+    proof: bool = dc.field(default=False)
+    miner_address: str = dc.field(default=None)
 
     TOKEN_PRIZE = 3  # reword to miner
 
@@ -34,9 +36,6 @@ class Block:
         """
         block_hash = hashlib.sha256(self.compute_block_header()).hexdigest()
         return block_hash
-
-    def add_transaction(self,transaction):
-        pass
 
     # TODO: validate block by pointer or lambda expression
     def validate_block(self) -> bool:

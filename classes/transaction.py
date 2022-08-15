@@ -22,6 +22,9 @@ class Transaction:
         self.payload_hash = self.compute_payload_hash()
         self.trans_hash = self.__compute_trans_hash()
 
+    def seal(self):
+        self.trans_hash = self.__compute_trans_hash()
+
     def compute_payload_hash(self):
         member_str = str(self.timestamp) + str(self.amount) + self.sender + self.receiver
         members_bytearray = bytearray(member_str, encoding="utf-8")
@@ -47,6 +50,12 @@ class Transaction:
         """
         if self.payload_hash != self.compute_payload_hash() or self.trans_hash != self.__compute_trans_hash():
             raise exceptions.TransactionException("Tempered transaction number = " + str(self))
+
+    def link_transactions(self,prev_trans):
+        if isinstance(prev_trans,Transaction):
+            self.prev_trans_hash = prev_trans.trans_hash
+        else:
+            raise ValueError("prev_trans argument is not of type Transaction")
 
     def __repr__(self):
         """
