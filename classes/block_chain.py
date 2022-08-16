@@ -15,19 +15,19 @@ class BlockChain:
         genesis_block = Block(1,[],"0")  # GENESIS_BLOCK is the first block in the chain
         self.chain.append(genesis_block)
 
-    # TODO: create add block method
+    # add block to chain
     def add_block(self, block):
         is_valid = block.validate_block()
         if is_valid:
             self.chain.append(block)
 
-    # TODO: adds temporary transactions to a new block
+    # adds temporary transactions to a new block
     def create_block(self, miner):
         new_block = Block(
             len(self.chain)+1,
             self.unverified_transactions,
             self.chain[-1].compute_block_hash(),
-            True,
+            # True,  # TODO: this is for updating 'proof' attribute in Block class
             miner.address
         )
         miner.tokens += new_block.TOKEN_PRIZE
@@ -36,7 +36,7 @@ class BlockChain:
 
     # TODO: add a check if its possible to transfer
     #       the amount of tokens from the sender to the receiver
-    def add_transaction(self,transaction):
+    def add_transaction_to_queue(self,transaction):
         if isinstance(transaction, Transaction):
             if len(self.unverified_transactions) > 0:
                 transaction.link_transactions(self.unverified_transactions[-1])
