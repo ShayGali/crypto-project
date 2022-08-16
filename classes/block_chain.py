@@ -38,7 +38,7 @@ class BlockChain:
     #       the amount of tokens from the sender to the receiver
     def add_transaction_to_queue(self,transaction):
         if isinstance(transaction, Transaction):
-            if len(self.unverified_transactions) > 0:
+            if len(self.unverified_transactions) > 0:  # to add here
                 transaction.link_transactions(self.unverified_transactions[-1])
             transaction.seal()
             # check that there is no tempering between seal() and appending the transaction
