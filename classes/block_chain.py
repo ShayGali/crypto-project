@@ -12,7 +12,7 @@ class BlockChain:
     chain: List[Block]
 
     def __post_init__(self):
-        genesis_block = Block(1,[],"0")  # GENESIS_BLOCK is the first block of the chain
+        genesis_block = Block(1,[],"0")  # GENESIS_BLOCK is the first block in the chain
         self.chain.append(genesis_block)
 
     # TODO: create add block method
@@ -21,7 +21,7 @@ class BlockChain:
         if is_valid:
             self.chain.append(block)
 
-    # TODO: adds temp transactions to a new block
+    # TODO: adds temporary transactions to a new block
     def create_block(self, miner):
         new_block = Block(
             len(self.chain)+1,
