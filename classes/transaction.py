@@ -9,10 +9,9 @@ import exceptions
 class Transaction:
     timestamp: datetime = dc.field(init=False)
     message: Message
-    sender: str
-    receiver: str
-    amount: float
-
+    # sender: str
+    # receiver: str
+    # amount: float
     payload_hash: str
     prev_trans_hash: str = dc.field(default=None)
     trans_hash: str = dc.field(default=None)
@@ -26,8 +25,9 @@ class Transaction:
         self.trans_hash = self.__compute_trans_hash()
 
     def compute_payload_hash(self):
-        member_str = str(self.timestamp) + str(self.amount) + self.sender + self.receiver
-        members_bytearray = bytearray(member_str, encoding="utf-8")
+        # member_str = str(self.timestamp) + str(self.amount) + self.sender + self.receiver
+        # members_bytearray = bytearray(member_str, encoding="utf-8")
+        members_bytearray = self.message.message_as_bytes()
         return hashlib.sha256(members_bytearray).hexdigest()
 
     def __compute_trans_hash(self):
