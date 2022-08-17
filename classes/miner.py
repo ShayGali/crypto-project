@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 import dataclasses as dc
 import rsa
-from block_chain import BlockChain
 
 
 @dataclass
