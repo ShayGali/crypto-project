@@ -34,7 +34,7 @@ class BlockChain:
         self.unverified_transactions.clear()
         self.add_block(new_block)
 
-    # TODO: add a check if its possible to transfer
+    # TODO: validate if its possible to transfer
     #       the amount of tokens from the sender to the receiver
     def add_transaction_to_queue(self,transaction):
         if isinstance(transaction, Transaction):
