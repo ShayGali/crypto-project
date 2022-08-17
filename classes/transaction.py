@@ -12,9 +12,9 @@ class Transaction:
     # sender: str
     # receiver: str
     # amount: float
-    payload_hash: str
-    prev_trans_hash: str = dc.field(default=None)
-    trans_hash: str = dc.field(default=None)
+    payload_hash: str = dc.field(init=False)
+    prev_trans_hash: str = dc.field(init=False)
+    trans_hash: str = dc.field(init=False)
 
     def __post_init__(self):
         self.timestamp = datetime.now()

@@ -12,6 +12,9 @@ class Miner:
     def __post_init__(self):
         self.address, self.private_key = rsa.newkeys(512)
 
+    def address_as_str(self):
+        return str(self.address)
+
     # TODO: mining a new block ?
     def mine_block(self):
         pass
