@@ -12,7 +12,7 @@ class Client:
         self.address, self.private_key = rsa.newkeys(512)
 
     # TODO: add validations
-    def validate_enough_tokens(self, amount):
+    def validate_enough_tokens(self, amount)->bool:
         if amount < self.tokens:
             return True
         return False

@@ -2,6 +2,8 @@ import hashlib
 from dataclasses import dataclass
 import dataclasses as dc
 from datetime import datetime
+
+from classes.client import Client
 from message import Message
 import exceptions
 
@@ -9,9 +11,9 @@ import exceptions
 class Transaction:
     timestamp: datetime = dc.field(init=False)
     message: Message
-    # sender: str
-    # receiver: str
-    # amount: float
+    sender: Client
+    receiver: Client
+    amount: float
     payload_hash: str = dc.field(init=False)
     prev_trans_hash: str = dc.field(init=False)
     trans_hash: str = dc.field(init=False)
