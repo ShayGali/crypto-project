@@ -1,6 +1,6 @@
 import hashlib
 from dataclasses import dataclass
-from typing import List, Callable
+from typing import List, Callable, ClassVar
 from transaction import Transaction
 import dataclasses as dc
 from datetime import datetime
@@ -9,7 +9,7 @@ from utilities import get_fields_str
 
 @dataclass
 class Block:
-    index: int
+    index:int
     transactions: List[Transaction]  # list of transactions
     timestamp: datetime = dc.field(init=False)  # time the block got mined
     previous_hash: str  # hash from the previous block
@@ -17,7 +17,7 @@ class Block:
     # proof: bool = dc.field(default=False)  # TODO: search for 'proof-of-work' algorithm
     miner_address: str = dc.field(default=None)
 
-    TOKEN_PRIZE = 3  # reword to miner
+    TOKEN_PRIZE: ClassVar[float] = dc.field(default=.1)  # reword to miner
 
     def __post_init__(self):
         self.timestamp = datetime.now()
@@ -39,5 +39,6 @@ class Block:
 
     def validate_block(self, validate_function: Callable[[any], bool]) -> bool:
         return validate_function(self)
+
 
 

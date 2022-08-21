@@ -5,7 +5,7 @@ import rsa
 
 @dataclass
 class Miner:
-    tokens: float
+    _tokens: float
     address: rsa.PublicKey = dc.field(init=False)
     _private_key: rsa.PrivateKey = dc.field(init=False)
 
@@ -14,6 +14,9 @@ class Miner:
 
     def address_as_str(self):
         return str(self.address)
+
+    def set_tokens(self, value):
+        self._tokens += value
 
     # TODO: mining a new block ?
     def mine_block(self):

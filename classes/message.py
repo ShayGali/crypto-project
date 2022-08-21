@@ -45,7 +45,3 @@ class Message:
             raise exceptions.TransactionException("Verification failed: " + str(ve))
 
 
-
-
-
-
