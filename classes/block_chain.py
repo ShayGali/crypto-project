@@ -26,7 +26,6 @@ class BlockChain:
             len(self.chain)+1,
             self.unverified_transactions,
             self.chain[-1].compute_block_hash(),
-            # True,  # TODO: this is for updating 'proof' attribute in Block class
             miner.address
         )
         miner.set_tokens(new_block.TOKEN_PRIZE)
