@@ -40,8 +40,11 @@ class BlockChain:
             transaction.validate_integrity()
             if transaction.sender.validate_enough_tokens(transaction.message.amount):
                 self.unverified_transactions.append(transaction)
+                transaction.sender.subtract_tokens(transaction.message.amount)
+                transaction.receiver.add_tokens(transaction.message.amount)
             else:
                 raise TransactionException("you don't have enough tokens")
+
 
 
 
