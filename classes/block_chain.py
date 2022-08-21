@@ -16,7 +16,7 @@ class BlockChain:
 
     # adds block to chain
     def add_block(self, block, miner):
-        is_valid = block.validate_block(lambda block2: True)
+        is_valid = block.validate_block(lambda block2: True)  # TODO: explain
         if is_valid:
             self.create_block(miner)
 

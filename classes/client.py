@@ -17,7 +17,6 @@ class Client:
     def subtract_tokens(self, value):
         self._tokens -= value
 
-    # TODO: add validations
     def validate_enough_tokens(self, value):
         if value < self._tokens:
             return True
