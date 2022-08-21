@@ -9,7 +9,7 @@ from utilities import get_fields_str
 
 @dataclass
 class Block:
-    index:int
+    index: int
     transactions: List[Transaction]  # list of transactions
     timestamp: datetime = dc.field(init=False)  # time the block got mined
     previous_hash: str  # hash from the previous block
@@ -40,6 +40,3 @@ class Block:
 
     def validate_block(self, validate_function: Callable[[any], bool]) -> bool:
         return validate_function(self)
-
-
-
