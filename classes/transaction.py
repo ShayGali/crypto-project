@@ -25,8 +25,6 @@ class Transaction:
         self.trans_hash = self.__compute_trans_hash()
 
     def compute_payload_hash(self):
-        # member_str = str(self.timestamp) + str(self.amount) + self.sender + self.receiver
-        # members_bytearray = bytearray(member_str, encoding="utf-8")
         members_bytearray = self.message.message_as_bytes()
         return hashlib.sha256(members_bytearray).hexdigest()
 
@@ -50,10 +48,6 @@ class Transaction:
         """
         if self.payload_hash != self.compute_payload_hash() or self.trans_hash != self.__compute_trans_hash():
             raise exceptions.TransactionException("Tempered transaction number = " + str(self))
-
-    # TODO: validate that there is no double spending
-    def double_spending(self):
-        pass
 
     def link_transactions(self,prev_trans):
         if isinstance(prev_trans,Transaction):
