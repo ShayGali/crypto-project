@@ -7,10 +7,10 @@ import rsa
 class Miner:
     tokens: float
     address: rsa.PublicKey = dc.field(init=False)
-    private_key: rsa.PrivateKey = dc.field(init=False)
+    _private_key: rsa.PrivateKey = dc.field(init=False)
 
     def __post_init__(self):
-        self.address, self.private_key = rsa.newkeys(512)
+        self.address, self._private_key = rsa.newkeys(512)
 
     def address_as_str(self):
         return str(self.address)
