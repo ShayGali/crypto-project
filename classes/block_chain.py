@@ -23,9 +23,10 @@ class BlockChain:
     # adds temporary transactions to a new block
     def create_block(self, miner):
         new_block = Block(
-            len(self.chain)+1,
+            self.chain[-1].index+1,
             self.unverified_transactions,
             self.chain[-1].compute_block_hash(),
+            # True,  # TODO: this is for updating 'proof' attribute in Block class
             miner.address
         )
         miner.set_tokens(new_block.TOKEN_PRIZE)
@@ -33,7 +34,7 @@ class BlockChain:
 
     def add_transaction_to_queue(self,transaction):
         if isinstance(transaction, Transaction):
-            if len(self.unverified_transactions) > 0:  # to add here
+            if len(self.unverified_transactions) > 0:
                 transaction.link_transactions(self.unverified_transactions[-1])
             transaction.seal()
             # check that there is no tempering between seal() and appending the transaction
@@ -44,7 +45,6 @@ class BlockChain:
                 transaction.receiver.add_tokens(transaction.message.amount)
             else:
                 raise TransactionException("you don't have enough tokens")
-
 
 
 

@@ -18,3 +18,10 @@ class Miner:
     def set_tokens(self, value):
         self._tokens += value
 
+    # TODO: mining a new block ?
+    def mine_block(self):
+        pass
+
+# if __name__ == '__main__':
+#     m = Miner(5.0)
+#     print(m)
