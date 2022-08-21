@@ -13,8 +13,6 @@ class Block:
     transactions: List[Transaction]  # list of transactions
     timestamp: datetime = dc.field(init=False)  # time the block got mined
     previous_hash: str  # hash from the previous block
-    nonce: int = dc.field(init=False)  # A counter used for the proof-of-work algorithm (number used to generate hash)
-    # proof: bool = dc.field(default=False)  # TODO: search for 'proof-of-work' algorithm
     miner_address: str = dc.field(default=None)
 
     TOKEN_PRIZE: ClassVar[float] = dc.field(default=.1)  # reword to miner
