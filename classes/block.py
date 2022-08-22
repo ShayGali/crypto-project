@@ -44,7 +44,8 @@ class Block:
         block_hash = hashlib.sha256(self.compute_block_header()).hexdigest()
         return block_hash
 
-    def validate_block(self, validate_function: Callable[[any], bool]) -> bool: 
+    # TODO: to see if necessary 'validate_function'
+    def validate_block(self, validate_function: Callable[[any], bool]) -> bool:
         """
         validate a block by a given callback function
         :param validate_function:

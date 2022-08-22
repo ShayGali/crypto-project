@@ -5,7 +5,7 @@ import rsa
 
 @dataclass
 class Miner:
-    _tokens: float
+    _tokens: float = dc.field(init=False)
     address: rsa.PublicKey = dc.field(init=False)
     _private_key: rsa.PrivateKey = dc.field(init=False)
 
@@ -15,6 +15,7 @@ class Miner:
         :return: None
         """
         self.address, self._private_key = rsa.newkeys(512)
+        self._tokens = 0
 
     def address_as_str(self):
         """
