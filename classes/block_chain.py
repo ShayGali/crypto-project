@@ -28,8 +28,8 @@ class BlockChain:
         :param miner: the current miner who mined the block
         :return: None
         """
-        is_valid = block.validate_block(lambda v: self.chain[-1].compute_block_hash() == block.compute_block_hash())
-        if is_valid:  # TODO: validate_block method ?
+        is_valid = block.validate_block(lambda: self.chain[-1].compute_block_hash() == block.compute_block_hash())
+        if is_valid:
             self.create_block(miner)
 
     def create_block(self, miner):

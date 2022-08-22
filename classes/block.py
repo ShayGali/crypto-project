@@ -44,14 +44,13 @@ class Block:
         block_hash = hashlib.sha256(self.compute_block_header()).hexdigest()
         return block_hash
 
-    # TODO: check if 'validate_function' method is necessary
-    def validate_block(self, validate_function: Callable[[any], bool]) -> bool:
+    def validate_block(self, validate: Callable[[any], bool]) -> bool:
         """
-        validate a block by a given callback function
-        :param validate_function:
-        :return: if the block is valid
+        validate block by a given callback function
+        :param validate:
+        :return: True or False
         """
-        return validate_function(self)
+        return validate()
 
     def proof_of_work(self, prev_nonce):
         """
@@ -67,4 +66,5 @@ class Block:
             else:
                 self.nonce += 1
         return self.nonce
+
 
