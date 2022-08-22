@@ -10,18 +10,25 @@ class Miner:
     _private_key: rsa.PrivateKey = dc.field(init=False)
 
     def __post_init__(self):
+        """
+        initialize miner's keys, called right after the object receives values for its fields
+        :return: None
+        """
         self.address, self._private_key = rsa.newkeys(512)
 
     def address_as_str(self):
+        """
+        :return: the address(public key) as string
+        """
         return str(self.address)
 
     def set_tokens(self, value):
+        """
+        adds tokens to miner's tokens
+        :param value: amount of tokens
+        :return: None
+        """
         self._tokens += value
 
-    # TODO: mining a new block ?
-    def mine_block(self):
-        pass
 
-# if __name__ == '__main__':
-#     m = Miner(5.0)
-#     print(m)
+

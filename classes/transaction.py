@@ -17,16 +17,27 @@ class Transaction:
     trans_hash: str = dc.field(init=False)
 
     def __post_init__(self):
+        """
+        initialize the current time of the transaction and computes the hash,
+        called right after the object receives values for its fields
+        :return: None
+        """
         self.timestamp = datetime.now()
         self.payload_hash = self.compute_payload_hash()
         self.trans_hash = self.__compute_trans_hash()
 
     def seal(self):
+        """
+        checks the seal of the transaction by the hash
+        :return: None
+        """
         self.trans_hash = self.__compute_trans_hash()
 
     def compute_payload_hash(self):
-        # member_str = str(self.timestamp) + str(self.amount) + self.sender + self.receiver
-        # members_bytearray = bytearray(member_str, encoding="utf-8")
+        """
+        computes the hash of message details
+        :return: hash of message details
+        """
         members_bytearray = self.message.message_as_bytes()
         return hashlib.sha256(members_bytearray).hexdigest()
 
@@ -51,11 +62,12 @@ class Transaction:
         if self.payload_hash != self.compute_payload_hash() or self.trans_hash != self.__compute_trans_hash():
             raise exceptions.TransactionException("Tempered transaction number = " + str(self))
 
-    # TODO: validate that there is no double spending
-    def double_spending(self):
-        pass
-
     def link_transactions(self,prev_trans):
+        """
+        links the current transaction to the previous transaction
+        :param prev_trans: from block
+        :return: None
+        """
         if isinstance(prev_trans,Transaction):
             self.prev_trans_hash = prev_trans.trans_hash
         else:
@@ -63,8 +75,8 @@ class Transaction:
 
     def __repr__(self):
         """
-        :return: a string representation of the Transaction's fields
+        :return: a string representation some of the Transaction's fields
         """
-        return "Transaction{\n"+"timestamp=" + str(self.timestamp) + ",\namount=" + str(self.amount) +\
+        return "Transaction{\n"+"timestamp=" + str(self.timestamp) + ",\namount=" + str(self.message.amount) +\
                ",\npayload_hash="+str(self.payload_hash)+"\n}"
 
