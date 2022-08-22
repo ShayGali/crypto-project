@@ -1,2 +1,2 @@
 # Crypto-Project
-python crypto course final project
+Final project in Crypto course using Python
